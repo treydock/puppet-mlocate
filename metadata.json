@@ -1,7 +1,7 @@
 {
-  "name": "puppet-mlocate",
+  "name": "adamcrews-mlocate",
   "version": "0.1.1",
-  "author": "adamcrews",
+  "author": "Adam Crews",
   "summary": "Manage the mlocate package for updatedb/locate.",
   "license": "Apache 2.0",
   "source": "https://github.com/adamcrews/puppet-mlocate.git",
