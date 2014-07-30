@@ -1,5 +1,7 @@
 # mlocate
 
+[![Build Status](https://travis-ci.org/adamcrews/puppet-mlocate.svg)](https://travis-ci.org/adamcrews/puppet-mlocate)
+
 #### Table of Contents
 
 1. [Overview](#overview)

@@ -1,6 +1,6 @@
 {
   "name": "puppet-mlocate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "adamcrews",
   "summary": "Manage the mlocate package for updatedb/locate.",
   "license": "Apache 2.0",
