@@ -2,5 +2,5 @@
 #
 PRUNE_BIND_MOUNTS = "<%= @prune_bind_mounts %>"
 PRUNEFS = "<%= ((@prunefs << @extra_prunefs).flatten!).join(' ') %>"
-PRUNENAMES = "<%= @prunenames %>"
+PRUNENAMES = "<%= ((@prunenames << @extra_prunenames).flatten!).join(' ') %>"
 PRUNEPATHS = "<%= ((@prunepaths << @extra_prunepaths).flatten!).join(' ') %>"
