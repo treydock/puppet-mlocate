@@ -1,0 +1,6 @@
+# This file is managed by puppet.
+#
+PRUNE_BIND_MOUNTS = "<%= @prune_bind_mounts %>"
+PRUNEFS = "<%= ((@prunefs << @extra_prunefs).flatten!).join(' ') %>"
+PRUNENAMES = "<%= @prunenames %>"
+PRUNEPATHS = "<%= ((@prunepaths << @extra_prunepaths).flatten!).join(' ') %>"

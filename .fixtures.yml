@@ -1,0 +1,7 @@
+fixtures:
+  forge_modules:
+    stdlib:
+      repo: 'puppetlabs/stdlib'
+      ref:  '4.3.2'
+  symlinks:
+    "mlocate": "#{source_dir}"
