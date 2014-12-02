@@ -1,7 +1,7 @@
 # mlocate
 
 [![Build Status](https://travis-ci.org/adamcrews/puppet-mlocate.svg)](https://travis-ci.org/adamcrews/puppet-mlocate)
-[![Puppet Forge](http://img.shields.io/adamcrews/mlocate.svg)](http://forge.puppetlabs.com/adamcrews/mlocate)
+[![Puppet Forge](http://img.shields.io/puppetforge/v/adamcrews/mlocate.svg)](http://forge.puppetlabs.com/adamcrews/mlocate)
 
 #### Table of Contents
 
