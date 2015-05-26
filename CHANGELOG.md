@@ -1,6 +1,10 @@
+2015-05-26 08:41:12 -0700 Adam Crews 
+
+	* Fixed quoting on param (HEAD, spec_update)
+
 2015-05-26 08:40:55 -0700 Adam Crews 
 
-	* Fixed tests to better check content (HEAD, spec_update)
+	* Fixed tests to better check content
 
 2015-05-26 06:32:19 -0700 Adam Crews 
 
