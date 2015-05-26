@@ -1,4 +1,10 @@
-class mlocate::install inherits mlocate {
+class mlocate::install (
+  $package_ensure = $::mlocate::package_ensure,
+  $package_name   = $::mlocate::package_name,
+  $conf_file      = $::mlocate::conf_file,
+  $update_command = $::mlocate::update_command,
+  $update_on_install = $::mlocate::update_on_install
+) inherits mlocate {
 
   if $caller_module_name != $module_name {
     fail("Use of private class ${name} by ${caller_module_name}")
