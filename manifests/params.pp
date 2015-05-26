@@ -6,8 +6,13 @@ class mlocate::params {
   $update_on_install  = true
   $conf_file          = '/etc/updatedb.conf'
   $cron_ensure        = 'present'
-  $prune_bind_mounts  = 'yes'
-  $prunenames         = [ '.git', '.hg', '.svn' ]
+  if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == 5 {
+    $prune_bind_mounts  = undef
+    $prunenames = undef
+  } else {
+    $prunenames         = [ '.git', '.hg', '.svn' ]
+    $prune_bind_mounts  = 'yes'
+  }
 
   $prunefs = [
     '9p', 'afs', 'anon_inodefs', 'auto', 'autofs', 'bdev', 'binfmt_misc',

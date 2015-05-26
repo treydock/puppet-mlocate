@@ -112,11 +112,13 @@ The standard cron time schedule. Default: once a week based on fqdn_rand
 
 Prune out bind mounts or not. Default: yes
 Refer to the updatedb.conf man page for more detail.
+On redhat 5 systems defaults to none.
 
 ####`prunenames`
 
 Prune out directories matching this pattern. Default: .git .hg .svn
 Refer to the updatedb.conf man page for more detail.
+On redhat 5 systems defaults to none.
 
 ####`extra_prunenames`
 
