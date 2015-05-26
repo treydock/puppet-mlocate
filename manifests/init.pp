@@ -96,10 +96,14 @@ class mlocate (
   validate_re($cron_ensure, ['^present', '^absent'], "Error: \$cron_ensure must be either 'present' or 'absent'")
   validate_string($cron_schedule)
 
-  validate_re($prune_bind_mounts, [ '^yes', '^no' ], "Error: \$prune_bund_mounts must be either 'yes', or 'no'")
+  if $prune_bind_mounts {
+    validate_re($prune_bind_mounts, [ '^yes', '^no' ], "Error: \$prune_bund_mounts must be either 'yes', or 'no'")
+  }
   validate_array($prunefs)
   validate_array($extra_prunefs)
-  validate_array($prunenames)
+  if $prunenames {
+    validate_array($prunenames)
+  }
   validate_array($extra_prunenames)
   validate_array($prunepaths)
   validate_array($extra_prunepaths)
