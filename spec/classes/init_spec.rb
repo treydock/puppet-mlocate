@@ -6,5 +6,10 @@ describe 'mlocate' do
     it { should contain_class('mlocate') }
     it { should contain_class('mlocate::install') }
     it { should contain_class('mlocate::cron') }
+    it { should contain_file('updatedb.conf').with_path('/etc/updatedb.conf') }
+    it { should contain_file('updatedb.conf').with_content(/^PRUNE_BIND_MOUNTS = "yes"$/) }
+    it { should contain_file('updatedb.conf').with_content(/^PRUNENAMES = ".git .hg .svn"$/) }
+    it { should contain_file('updatedb.conf').with_content(/^PRUNEPATHS = \"\/afs .*$/) }
+    it { should contain_file('updatedb.conf').with_content(/^PRUNEFS = \"9p afs .*$/) }
   end
 end
