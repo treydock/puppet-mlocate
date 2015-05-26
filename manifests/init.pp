@@ -97,7 +97,7 @@ class mlocate (
   validate_string($cron_schedule)
 
   if $prune_bind_mounts {
-    validate_re($prune_bind_mounts, [ '^yes', '^no' ], "Error: \$prune_bund_mounts must be either 'yes', or 'no'")
+    validate_re($prune_bind_mounts, [ '^yes', '^no' ], "Error: \$prune_bind_mounts must be either 'yes', or 'no'")
   }
   validate_array($prunefs)
   validate_array($extra_prunefs)
