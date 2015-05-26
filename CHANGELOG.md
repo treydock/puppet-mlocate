@@ -1,10 +1,14 @@
+2015-05-26 08:40:55 -0700 Adam Crews 
+
+	* Fixed tests to better check content (HEAD, spec_update)
+
 2015-05-26 06:32:19 -0700 Adam Crews 
 
-	* Fix license name (HEAD, spec_update)
+	* Fix license name (origin/spec_update)
 
 2015-05-26 06:28:34 -0700 Adam Crews 
 
-	* Update spec tests, prep for a release (origin/spec_update)
+	* Update spec tests, prep for a release
 
 2015-05-26 14:01:10 +0200 Steve Traylen 
 

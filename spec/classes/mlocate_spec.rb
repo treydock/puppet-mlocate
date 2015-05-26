@@ -19,8 +19,8 @@ describe 'mlocate' do
           it { should contain_file('updatedb.conf').with_content(/^PRUNEFS = \"9p afs .*$/) }
 
           if facts[:osfamily] == 'RedHat' and facts[:operatingsystemmajrelease] == '5' then
-            it { should_not contain_file('updatedb.conf').with_content(/^PRUNE_BIND_MOUNTS.*$/) }
-            it { should_not contain_file('updatedb.conf').with_content(/^PRUNENAMES.*$/) }
+            it { should contain_file('updatedb.conf').without_content(/^PRUNE_BIND_MOUNTS.*$/) }
+            it { should contain_file('updatedb.conf').without_content(/^PRUNENAMES.*$/) }
           else
             it { should contain_file('updatedb.conf').with_content(/^PRUNE_BIND_MOUNTS = "yes"$/) }
             it { should contain_file('updatedb.conf').with_content(/^PRUNENAMES = ".git .hg .svn"$/) }
