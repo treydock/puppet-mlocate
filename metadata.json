@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "author": "Adam Crews",
   "summary": "Manage the mlocate package for updatedb/locate.",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/adamcrews/puppet-mlocate.git",
   "project_page": "https://github.com/adamcrews/puppet-mlocate",
   "issues_url": "https://github.com/adamcrews/puppet-mlocate/issues",
