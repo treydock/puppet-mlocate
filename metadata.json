@@ -1,33 +1,33 @@
 {
   "name": "adamcrews-mlocate",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "Adam Crews",
   "summary": "Manage the mlocate package for updatedb/locate.",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/adamcrews/puppet-mlocate.git",
   "project_page": "https://github.com/adamcrews/puppet-mlocate",
   "issues_url": "https://github.com/adamcrews/puppet-mlocate/issues",
   "requirements": [
     {
       "name": "pe",
-      "version_requirement": ">=3.2.0 <3.4.0"
+      "version_requirement": ">=3.2.0 <4.0.0"
     },
     {
       "name": "puppet",
-      "version_requirement": ">=3.0.0 <4.0.0"
+      "version_requirement": ">=3.0.0 <4.2.0"
     }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
-      "operatingsystem_release": [
+      "operatingsystemrelease": [
         "5",
         "6"
       ]
     },
     {
       "operatingsystem": "CentOS",
-      "operatingsystem_release": [
+      "operatingsystemrelease": [
         "5",
         "6"
       ]
