@@ -1,4 +1,6 @@
-class mlocate::cron inherits mlocate {
+class mlocate::cron (
+  $cron_ensure = $::mlocate::cron_ensure
+) inherits mlocate {
 
   if $caller_module_name != $module_name {
     fail("Use of private class ${name} by ${caller_module_name}")
