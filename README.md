@@ -29,7 +29,7 @@ Install and manage the mlocate/updatedb package.
 ## Module Description
 
 Mlocate is a useful tool that does a find of your system and records the files present.
-It's a bit old, and not commonly used, irrelevant on dispisable systems, but I like it, so get off my lawn.
+It's a bit old, not commonly used, irrelevant on disposable systems, but I like it, so get off my lawn.
 
 ## Setup
 

@@ -1,10 +1,30 @@
+2015-05-26 06:28:34 -0700 Adam Crews 
+
+	* Update spec tests, prep for a release (HEAD, spec_update)
+
+2015-05-26 14:01:10 +0200 Steve Traylen 
+
+	* Eplicitly specify origin of class variables
+
+2015-05-26 13:35:13 +0200 Steve Traylen 
+
+	* Typo in error message
+
+2015-05-26 13:33:23 +0200 Steve Traylen 
+
+	* Ensure default works on redhat 5 systems. In particular it avoids the following error:
+
+2015-05-26 13:25:10 +0200 Steve Traylen 
+
+	* Tests on contents of updatedb.conf
+
 2014-12-02 12:03:15 -0800 Adam Crews 
 
-	* Fixed badge url (HEAD, master)
+	* Fixed badge url
 
 2014-12-02 12:01:23 -0800 Adam Crews 
 
-	* Added forge badge (origin/master)
+	* Added forge badge
 
 2014-07-30 13:55:24 -0700 Adam Crews 
 
