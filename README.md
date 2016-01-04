@@ -154,6 +154,10 @@ Please add spec tests, and submit PR's from a branch.
 
 More spec tests are needed.
 
+### Misc
+
+With the 0.3.0 release, the cron job times will likely change as an extra seed argument has been added to the fqdn_rand function calls.  This is a workaround for https://tickets.puppetlabs.com/browse/PUP-5646
+
 ## Contributors
 
 Contributors can be found on github.
