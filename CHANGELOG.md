@@ -1,6 +1,10 @@
+2016-01-04 14:35:19 -0800 Adam Crews 
+
+	* Updates to travis build info (HEAD -> maint_release)
+
 2016-01-04 14:34:56 -0800 Adam Crews 
 
-	* Add additional seed to fqdn_rand calls, thanks to @traylenator (HEAD -> maint_release)
+	* Add additional seed to fqdn_rand calls, thanks to @traylenator
 
 2015-10-07 13:06:28 -0700 Adam Crews 
 

@@ -1,6 +1,6 @@
 {
   "name": "adamcrews-mlocate",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": "Adam Crews",
   "summary": "Manage the mlocate package for updatedb/locate.",
   "license": "Apache-2.0",
@@ -10,11 +10,11 @@
   "requirements": [
     {
       "name": "pe",
-      "version_requirement": ">=3.2.0 <4.0.0"
+      "version_requirement": ">=3.2.0 <2016.x.x"
     },
     {
       "name": "puppet",
-      "version_requirement": ">=3.0.0 <4.2.0"
+      "version_requirement": ">=3.4.0 <5.0.0"
     }
   ],
   "operatingsystem_support": [
