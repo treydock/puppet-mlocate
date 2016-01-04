@@ -1,6 +1,22 @@
+2016-01-04 14:35:19 -0800 Adam Crews 
+
+	* Updates to travis build info (HEAD -> maint_release)
+
+2016-01-04 14:34:56 -0800 Adam Crews 
+
+	* Add additional seed to fqdn_rand calls, thanks to @traylenator
+
+2015-10-07 13:06:28 -0700 Adam Crews 
+
+	* Cut new release (origin/master, origin/HEAD, master)
+
+2015-10-07 12:30:29 -0700 msweetser 
+
+	* Fixed typo in dependencies in metadata.json
+
 2015-05-26 08:41:12 -0700 Adam Crews 
 
-	* Fixed quoting on param (HEAD, spec_update)
+	* Fixed quoting on param (origin/spec_update)
 
 2015-05-26 08:40:55 -0700 Adam Crews 
 
@@ -8,7 +24,7 @@
 
 2015-05-26 06:32:19 -0700 Adam Crews 
 
-	* Fix license name (origin/spec_update)
+	* Fix license name
 
 2015-05-26 06:28:34 -0700 Adam Crews 
 

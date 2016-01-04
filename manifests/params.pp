@@ -29,9 +29,9 @@ class mlocate::params {
     '/var/spool/cups', '/var/spool/squid', '/var/tmp',
   ]
 
-  $_cron_min  = fqdn_rand(60)
-  $_cron_hour = fqdn_rand(24)
-  $_cron_day  = fqdn_rand(7)
+  $_cron_min  = fqdn_rand(60, $module_name)
+  $_cron_hour = fqdn_rand(24, $module_name)
+  $_cron_day  = fqdn_rand(7, $module_name)
 
   # default run weekly at a random minute in a random hour on a random day.
   $cron_schedule = "${_cron_min} ${_cron_hour} * * ${_cron_day}"
