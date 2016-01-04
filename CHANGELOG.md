@@ -1,6 +1,10 @@
+2016-01-04 14:55:03 -0800 Adam Crews 
+
+	* Fix metadata version_requirements (HEAD -> fix_metadata)
+
 2016-01-04 14:35:19 -0800 Adam Crews 
 
-	* Updates to travis build info (HEAD -> maint_release)
+	* Updates to travis build info (origin/maint_release, maint_release)
 
 2016-01-04 14:34:56 -0800 Adam Crews 
 
@@ -8,7 +12,7 @@
 
 2015-10-07 13:06:28 -0700 Adam Crews 
 
-	* Cut new release (origin/master, origin/HEAD, master)
+	* Cut new release (tag: v0.2.1)
 
 2015-10-07 12:30:29 -0700 msweetser 
 
