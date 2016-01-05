@@ -1,10 +1,14 @@
+2016-01-05 08:53:10 -0800 Adam Crews 
+
+	* Implement better fix for fqdn_rand issues (HEAD -> fqdn_rand_fix2)
+
 2016-01-04 14:55:03 -0800 Adam Crews 
 
-	* Fix metadata version_requirements (HEAD -> fix_metadata)
+	* Fix metadata version_requirements (origin/fix_metadata)
 
 2016-01-04 14:35:19 -0800 Adam Crews 
 
-	* Updates to travis build info (origin/maint_release, maint_release)
+	* Updates to travis build info
 
 2016-01-04 14:34:56 -0800 Adam Crews 
 
@@ -20,7 +24,7 @@
 
 2015-05-26 08:41:12 -0700 Adam Crews 
 
-	* Fixed quoting on param (origin/spec_update)
+	* Fixed quoting on param
 
 2015-05-26 08:40:55 -0700 Adam Crews 
 
