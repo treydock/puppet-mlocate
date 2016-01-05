@@ -1,6 +1,10 @@
+2016-01-05 08:56:32 -0800 Adam Crews 
+
+	* Forgot to bump release (HEAD -> fqdn_rand_fix2)
+
 2016-01-05 08:53:10 -0800 Adam Crews 
 
-	* Implement better fix for fqdn_rand issues (HEAD -> fqdn_rand_fix2)
+	* Implement better fix for fqdn_rand issues (origin/fqdn_rand_fix2)
 
 2016-01-04 14:55:03 -0800 Adam Crews 
 

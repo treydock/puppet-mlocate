@@ -1,6 +1,6 @@
 {
   "name": "adamcrews-mlocate",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": "Adam Crews",
   "summary": "Manage the mlocate package for updatedb/locate.",
   "license": "Apache-2.0",
