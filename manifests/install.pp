@@ -28,7 +28,7 @@ class mlocate::install (
 
   file { 'update_command':
     ensure  => file,
-    path    => $update_command,
+    path    => $_update_command_path,
     owner   => 'root',
     group   => 'root',
     mode    => '0555',
@@ -42,7 +42,7 @@ class mlocate::install (
   }
 
   if $update_on_install == true {
-    exec { $update_command:
+    exec { $_update_command_path:
       refreshonly => true,
       creates     => '/var/lib/mlocate/mlocate.db',
       subscribe   => Package['mlocate'],

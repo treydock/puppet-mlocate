@@ -1,11 +1,12 @@
 class mlocate::params {
 
-  $package_name       = 'mlocate'
-  $package_ensure     = 'present'
-  $update_command     = '/usr/local/bin/mlocate.cron'
-  $update_on_install  = true
-  $conf_file          = '/etc/updatedb.conf'
-  $cron_ensure        = 'present'
+  $package_name         = 'mlocate'
+  $package_ensure       = 'present'
+  $update_command_path  = undef
+  $update_command       = '/usr/local/bin/mlocate.cron'
+  $update_on_install    = true
+  $conf_file            = '/etc/updatedb.conf'
+  $cron_ensure          = 'present'
   if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '5' {
     $prune_bind_mounts  = undef
     $prunenames = undef
