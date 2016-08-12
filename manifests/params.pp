@@ -2,6 +2,7 @@ class mlocate::params {
 
   $package_name          = 'mlocate'
   $package_ensure        = 'present'
+  $update_command_path    = undef
   $update_command        = '/usr/local/bin/mlocate.cron'
   $deploy_update_command = true
   $update_on_install     = true

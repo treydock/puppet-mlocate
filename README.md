@@ -88,6 +88,10 @@ The name of the package to install. Default: mlocate
 
 Ensure the package is present, latest, or absent. Default: present
 
+####`update_command_path`
+
+The path of the updatedb wrapper script. Default: $update_command
+
 ####`update_command`
 
 The name of the updatedb wrapper script. Default: /usr/local/bin/mlocate.cron

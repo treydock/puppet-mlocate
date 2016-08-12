@@ -2,6 +2,7 @@ class mlocate::install (
   $package_ensure        = $::mlocate::package_ensure,
   $package_name          = $::mlocate::package_name,
   $conf_file             = $::mlocate::conf_file,
+  $update_command_path   = $::mlocate::_update_command_path,
   $update_command        = $::mlocate::update_command,
   $deploy_update_command = $::mlocate::deploy_update_command,
   $update_on_install     = $::mlocate::update_on_install,
@@ -30,7 +31,7 @@ class mlocate::install (
   if $deploy_update_command {
     file { 'update_command':
       ensure  => file,
-      path    => $update_command,
+      path    => $update_command_path,
       owner   => 'root',
       group   => 'root',
       mode    => '0555',
@@ -48,7 +49,7 @@ class mlocate::install (
   }
 
   if $update_on_install == true {
-    exec { $update_command:
+    exec { $update_command_path:
       refreshonly => true,
       creates     => '/var/lib/mlocate/mlocate.db',
       subscribe   => Package['mlocate'],

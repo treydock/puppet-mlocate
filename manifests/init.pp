@@ -10,6 +10,9 @@
 # [*package_ensure*]
 #   Ensure the package is present, latest, or absent. Default: present
 #
+# [*update_command_path*]
+#   The path to the updatedb wrapper script.  Default: $update_command
+#
 # [*update_command*]
 #   The name of the updatedb wrapper script. Default: /usr/local/bin/mlocate.cron
 #
@@ -77,6 +80,7 @@
 class mlocate (
   $package_name          = $mlocate::params::package_name,
   $package_ensure        = $mlocate::params::package_ensure,
+  $update_command_path   = $mlocate::params::update_command_path,
   $update_command        = $mlocate::params::update_command,
   $deploy_update_command = $mlocate::params::deploy_update_command,
   $update_on_install     = $mlocate::params::update_on_install,
@@ -97,6 +101,8 @@ class mlocate (
 
   validate_string($package_name)
   validate_re($package_ensure, ['^present', '^latest', '^absent'], "Error: \$package_ensure must be either 'present', 'latest', or 'absent'")
+  $_update_command_path = pick($update_command_path, $update_command)
+  validate_absolute_path($_update_command_path)
   validate_absolute_path($update_command)
   validate_bool($deploy_update_command)
   validate_bool($update_on_install)
