@@ -3,7 +3,8 @@ class mlocate::install (
   $package_name   = $::mlocate::package_name,
   $conf_file      = $::mlocate::conf_file,
   $update_command = $::mlocate::update_command,
-  $update_on_install = $::mlocate::update_on_install
+  $update_on_install = $::mlocate::update_on_install,
+  $cron_daily_path = $::mlocate::cron_daily_path,
 ) inherits mlocate {
 
   if $caller_module_name != $module_name {
@@ -35,7 +36,7 @@ class mlocate::install (
     require => File['updatedb.conf'],
   }
 
-  file { '/etc/cron.daily/mlocate.cron':
+  file { $cron_daily_path:
     ensure  => absent,
     require => Package['mlocate'],
   }

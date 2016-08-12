@@ -108,6 +108,10 @@ Ensure the cron jobs is present or absent. Default: present
 
 The standard cron time schedule. Default: once a week based on fqdn_rand
 
+####`cron_daily_path`
+
+The path to cron.daily file installed by mlocate and that is removed
+
 ####`prune_bind_mounts`
 
 Prune out bind mounts or not. Default: yes

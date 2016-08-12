@@ -17,6 +17,7 @@ group :test do
   gem 'puppet-lint-classes_and_types_beginning_with_digits-check'
   gem 'puppet-lint-unquoted_string-check'
   gem 'puppet-lint-variable_contains_upcase'
+  gem 'json_pure', '~> 1.x'
 end
 
 group :development do

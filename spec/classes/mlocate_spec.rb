@@ -9,6 +9,8 @@ describe 'mlocate' do
           facts
         end
 
+        it { should compile.with_all_deps }
+
         context 'with defaults for all parameters' do
           it { should contain_class('mlocate') }
           it { should contain_class('mlocate::install') }
