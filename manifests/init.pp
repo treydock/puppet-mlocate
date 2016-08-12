@@ -25,6 +25,9 @@
 # [*cron_schedule*]
 #   The standard cron time schedule. Default: once a week based on fqdn_rand
 #
+# [*cron_daily_path*]
+#   The path to cron.daily file installed by mlocate and that is removed.
+#
 # [*prune_bind_mounts*]
 #   Prune out bind mounts or not. Default: yes
 #   Refer to the updatedb.conf man page for more detail.
@@ -77,6 +80,7 @@ class mlocate (
 
   $cron_ensure        = $mlocate::params::cron_ensure,
   $cron_schedule      = $mlocate::params::cron_schedule,
+  $cron_daily_path    = $mlocate::params::cron_daily_path,
 
   $prune_bind_mounts  = $mlocate::params::prune_bind_mounts,
   $prunefs            = $mlocate::params::prunefs,
@@ -95,6 +99,7 @@ class mlocate (
 
   validate_re($cron_ensure, ['^present', '^absent'], "Error: \$cron_ensure must be either 'present' or 'absent'")
   validate_string($cron_schedule)
+  validate_absolute_path($cron_daily_path)
 
   if $prune_bind_mounts {
     validate_re($prune_bind_mounts, [ '^yes', '^no' ], "Error: \$prune_bind_mounts must be either 'yes', or 'no'")
