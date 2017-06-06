@@ -13,6 +13,9 @@
 # [*update_command*]
 #   The name of the updatedb wrapper script. Default: /usr/local/bin/mlocate.cron
 #
+# [*deploy_update_command*]
+#   If true the puppet module will deploy update_command script. Default: true
+#
 # [*update_on_install*]
 #   Run an initial update when the package is installed. Default: true
 #
@@ -72,28 +75,30 @@
 # Copyright 2014 Adam Crews, unless otherwise noted.
 #
 class mlocate (
-  $package_name       = $mlocate::params::package_name,
-  $package_ensure     = $mlocate::params::package_ensure,
-  $update_command     = $mlocate::params::update_command,
-  $update_on_install  = $mlocate::params::update_on_install,
-  $conf_file          = $mlocate::params::conf_file,
+  $package_name          = $mlocate::params::package_name,
+  $package_ensure        = $mlocate::params::package_ensure,
+  $update_command        = $mlocate::params::update_command,
+  $deploy_update_command = $mlocate::params::deploy_update_command,
+  $update_on_install     = $mlocate::params::update_on_install,
+  $conf_file             = $mlocate::params::conf_file,
 
-  $cron_ensure        = $mlocate::params::cron_ensure,
-  $cron_schedule      = $mlocate::params::cron_schedule,
-  $cron_daily_path    = $mlocate::params::cron_daily_path,
+  $cron_ensure           = $mlocate::params::cron_ensure,
+  $cron_schedule         = $mlocate::params::cron_schedule,
+  $cron_daily_path       = $mlocate::params::cron_daily_path,
 
-  $prune_bind_mounts  = $mlocate::params::prune_bind_mounts,
-  $prunefs            = $mlocate::params::prunefs,
-  $extra_prunefs      = [],
-  $prunenames         = $mlocate::params::prunenames,
-  $extra_prunenames   = [],
-  $prunepaths         = $mlocate::params::prunepaths,
-  $extra_prunepaths   = [],
+  $prune_bind_mounts     = $mlocate::params::prune_bind_mounts,
+  $prunefs               = $mlocate::params::prunefs,
+  $extra_prunefs         = [],
+  $prunenames            = $mlocate::params::prunenames,
+  $extra_prunenames      = [],
+  $prunepaths            = $mlocate::params::prunepaths,
+  $extra_prunepaths      = [],
 ) inherits mlocate::params {
 
   validate_string($package_name)
   validate_re($package_ensure, ['^present', '^latest', '^absent'], "Error: \$package_ensure must be either 'present', 'latest', or 'absent'")
   validate_absolute_path($update_command)
+  validate_bool($deploy_update_command)
   validate_bool($update_on_install)
   validate_absolute_path($conf_file)
 
