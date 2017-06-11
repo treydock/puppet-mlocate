@@ -1,10 +1,11 @@
 class mlocate::install (
-  $package_ensure = $::mlocate::package_ensure,
-  $package_name   = $::mlocate::package_name,
-  $conf_file      = $::mlocate::conf_file,
-  $update_command = $::mlocate::update_command,
-  $update_on_install = $::mlocate::update_on_install,
-  $cron_daily_path = $::mlocate::cron_daily_path,
+  $package_ensure        = $::mlocate::package_ensure,
+  $package_name          = $::mlocate::package_name,
+  $conf_file             = $::mlocate::conf_file,
+  $update_command        = $::mlocate::update_command,
+  $deploy_update_command = $::mlocate::deploy_update_command,
+  $update_on_install     = $::mlocate::update_on_install,
+  $cron_daily_path       = $::mlocate::cron_daily_path,
 ) inherits mlocate {
 
   if $caller_module_name != $module_name {
@@ -26,14 +27,16 @@ class mlocate::install (
     require => Package['mlocate'],
   }
 
-  file { 'update_command':
-    ensure  => file,
-    path    => $update_command,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0555',
-    source  => "puppet:///modules/${module_name}/mlocate.cron",
-    require => File['updatedb.conf'],
+  if $deploy_update_command {
+    file { 'update_command':
+      ensure  => file,
+      path    => $update_command,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0555',
+      source  => "puppet:///modules/${module_name}/mlocate.cron",
+      require => File['updatedb.conf'],
+    }
   }
 
   file { $cron_daily_path:

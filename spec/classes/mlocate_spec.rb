@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'mlocate' do
-
   context 'supported operating systems' do
     on_supported_os.each do |os, facts|
       context "on #{os}" do
@@ -20,12 +19,30 @@ describe 'mlocate' do
           it { should contain_file('updatedb.conf').with_content(/^PRUNEPATHS = \"\/afs .*$/) }
           it { should contain_file('updatedb.conf').with_content(/^PRUNEFS = \"9p afs .*$/) }
 
-          if facts[:osfamily] == 'RedHat' and facts[:operatingsystemmajrelease] == '5' then
+          it { should contain_file('update_command').with_path('/usr/local/bin/mlocate.cron') }
+
+          if facts[:osfamily] == 'RedHat' && facts[:operatingsystemmajrelease] == '5'
             it { should contain_file('updatedb.conf').without_content(/^PRUNE_BIND_MOUNTS.*$/) }
             it { should contain_file('updatedb.conf').without_content(/^PRUNENAMES.*$/) }
           else
             it { should contain_file('updatedb.conf').with_content(/^PRUNE_BIND_MOUNTS = "yes"$/) }
             it { should contain_file('updatedb.conf').with_content(/^PRUNENAMES = ".git .hg .svn"$/) }
+          end
+        end
+        context 'with some parameters set and booleans true' do
+          let(:params) do
+            {
+              update_command: '/tmp/junk',
+              deploy_update_command: true
+            }
+            it { should contain_file('update_command').with_path('/tmp/jumk') }
+          end
+        end
+        context 'with some parameters set and booleans false' do
+          let(:params) do
+            { update_command: '/tmp/junk',
+              deploy_update_command: false }
+            it { should_not contain_file('update_command') }
           end
         end
       end
