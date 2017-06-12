@@ -118,8 +118,8 @@ class mlocate (
   validate_array($prunepaths)
   validate_array($extra_prunepaths)
 
-  anchor { 'mlocate::begin': } ->
-    class { 'mlocate::install': } ->
-    class { 'mlocate::cron': } ->
-  anchor { 'mlocate::end': }
+  anchor { 'mlocate::begin': }
+  -> class { '::mlocate::install': }
+  -> class { '::mlocate::cron': }
+  -> anchor { 'mlocate::end': }
 }
