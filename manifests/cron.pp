@@ -18,6 +18,6 @@ class mlocate::cron (
     owner   => 'root',
     group   => 'root',
     mode    => '0444',
-    content => template("${module_name}/cron.d.erb")
+    content => template("${module_name}/cron.d.erb"),
   }
 }
