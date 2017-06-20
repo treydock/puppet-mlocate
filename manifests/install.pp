@@ -37,6 +37,9 @@ class mlocate::install (
       source  => "puppet:///modules/${module_name}/mlocate.cron",
       require => File['updatedb.conf'],
     }
+    $_exec_require = File['update_command']
+  } else {
+    $_exec_require = undef
   }
 
   file { $cron_daily_path:
@@ -49,7 +52,7 @@ class mlocate::install (
       refreshonly => true,
       creates     => '/var/lib/mlocate/mlocate.db',
       subscribe   => Package['mlocate'],
-      require     => File['update_command'],
+      require     => $_exec_require,
     }
   }
 }
