@@ -20,6 +20,7 @@ describe 'mlocate' do
           it { should contain_file('updatedb.conf').with_content(/^PRUNEFS = \"9p afs .*$/) }
 
           it { should contain_file('update_command').with_path('/usr/local/bin/mlocate.cron') }
+          it { should contain_exec('/usr/local/bin/mlocate.cron') }
 
           if facts[:osfamily] == 'RedHat' && facts[:operatingsystemmajrelease] == '5'
             it { should contain_file('updatedb.conf').without_content(/^PRUNE_BIND_MOUNTS.*$/) }
@@ -29,21 +30,39 @@ describe 'mlocate' do
             it { should contain_file('updatedb.conf').with_content(/^PRUNENAMES = ".git .hg .svn"$/) }
           end
         end
-        context 'with some parameters set and booleans true' do
+        context 'with update_command set and deploy_update_command true' do
           let(:params) do
             {
               update_command: '/tmp/junk',
               deploy_update_command: true
             }
-            it { should contain_file('update_command').with_path('/tmp/jumk') }
           end
+          it { should contain_file('update_command').with_path('/tmp/junk') }
+          it { should contain_exec('/tmp/junk') }
         end
-        context 'with some parameters set and booleans false' do
+        context 'with update_command set and deploy_update_command false' do
           let(:params) do
             { update_command: '/tmp/junk',
               deploy_update_command: false }
-            it { should_not contain_file('update_command') }
           end
+          it { should_not contain_file('update_command') }
+          it { should contain_exec('/tmp/junk') }
+        end
+        context 'with update_command set and update_on_install false' do
+          let(:params) do
+            { update_command: '/tmp/junk',
+              update_on_install: false }
+          end
+	  it { should contain_file('update_command').with_path('/tmp/junk') }
+          it { should_not contain_exec('/tmp/junk') }
+        end
+        context 'with update_command set and update_on_install true' do
+          let(:params) do
+            { update_command: '/tmp/junk',
+              update_on_install: true }
+          end
+	  it { should contain_file('update_command').with_path('/tmp/junk') }
+          it { should contain_exec('/tmp/junk') }
         end
       end
     end
