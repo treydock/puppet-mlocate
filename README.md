@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/adamcrews/puppet-mlocate.svg)](https://travis-ci.org/adamcrews/puppet-mlocate)
 [![Puppet Forge](http://img.shields.io/puppetforge/v/adamcrews/mlocate.svg)](http://forge.puppetlabs.com/adamcrews/mlocate)
+[![License (Apache 2.0)](https://img.shields.io/badge/license-Apache-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 #### Table of Contents
 
@@ -23,7 +24,6 @@
 7. [Contributors](#contributors)
 
 ## Overview
-
 Install and manage the mlocate/updatedb package.
 
 ## Module Description
@@ -48,7 +48,7 @@ Everything can be configured via the default mlocate class.
 
 ## Usage
 
-Basic usage that will result is a setup very close to a default CentOS configuration
+Basic usage that will result is a setup very close to a default RedHat configuration
 
 ```puppet
 include ::mlocate
@@ -72,83 +72,85 @@ class { '::mlocate':
 
 #### Private Classes
 
-* mlocate::params: default parameters.
 * mlocate::install: install and configure the software.
 * mlocate::cron: setup the cron job.
 
-###Parameters
+### Parameters
 
 The following parameters are available as options to the default mlocate class.
 
-####`package_name`
+#### `package_name`
+The name of the package to install.
+**Default: 'mlocate'**
 
-The name of the package to install. Default: mlocate
+#### `package_ensure`
+Ensure the package is 'present', 'absent', or 'latest'.
+**Default: 'present'**
 
-####`package_ensure`
+#### `update_command`
+The name of the updatedb wrapper script.
+**Default: '/usr/local/bin/mlocate.cron'**
 
-Ensure the package is present, latest, or absent. Default: present
+#### `update_on_install`
+Run an initial update when the package is installed.
+**Default: true**
 
-####`update_command`
+#### `conf_file`
+The configuration file for updatedb.
+**Default: '/etc/updatedb.conf'**
 
-The name of the updatedb wrapper script. Default: /usr/local/bin/mlocate.cron
+#### `cron_ensure`
+Ensure the cron jobs is present or absent.
+**Default: 'present'**
 
-####`update_on_install`
+#### `cron_schedule`
+The standard cron time schedule.
+**Default: once a week based on *fqdn_rand* **
 
-Run an initial update when the package is installed. Default: true
+#### `cron_daily_path`
+The path to cron.daily file installed by mlocate and that is removed.
+**Default: '/etc/cron.daily/mlocate.cron' or '/etc/cron.daily/mlocate' (depending on OS version)**
 
-####`conf_file`
-
-The configuration file for updatedb. Default: /etc/updatedb.conf
-
-####`cron_ensure`
-
-Ensure the cron jobs is present or absent. Default: present
-
-####`cron_schedule`
-
-The standard cron time schedule. Default: once a week based on fqdn_rand
-
-####`cron_daily_path`
-
-The path to cron.daily file installed by mlocate and that is removed
-
-####`prune_bind_mounts`
-
-Prune out bind mounts or not. Default: yes
-Refer to the updatedb.conf man page for more detail.
-On redhat 5 systems defaults to none.
-
-####`prunenames`
-
-Prune out directories matching this pattern. Default: .git .hg .svn
-Refer to the updatedb.conf man page for more detail.
-On redhat 5 systems defaults to none.
-
-####`extra_prunenames`
-
-Prune out additional directories matching this pattern. Default: none
-
-####`prunefs`
-
-Prune out these FS types. Default: refer to the params.pp
+#### `prune_bind_mounts`
+Prune out bind mounts or not.
+*Optional value*
+**Default: 'yes'**
 Refer to the updatedb.conf man page for more detail.
 
-####`extra_prunefs`
-
-Prune out additional directories matching this pattern. Default: none
-
-####`prunepaths`
-
-Prune out paths matching this pattern. Default: refer to params.pp
+#### `prunenames`
+Prune out directories matching this pattern.
+*Optional value*
+**Default: '.git .hg .svn'**
 Refer to the updatedb.conf man page for more detail.
 
-####`extra_prunepaths`
+#### `extra_prunenames`
+Prune out additional directories matching this pattern.
+*Optional value*
+**Default: undef**
 
-Prune out additional directories matching this pattern. Default: none
+#### `prunefs`
+Prune out these filesystem types.
+**Default: refer to `mlocate::prunefs` in *data/common.yaml* **
+Refer to the updatedb.conf man page for more detail.
+
+#### `extra_prunefs`
+Prune out additional filesystem types matching this pattern.
+*Optional value*
+**Default: undef**
+
+#### `prunepaths`
+Prune out paths matching this pattern.
+**Default: refer to `mlocate::prunepaths` in *data/common.yaml* **
+Refer to the updatedb.conf man page for more detail.
+
+#### `extra_prunepaths`
+Prune out additional paths matching this pattern.
+*Optional value*
+**Default: undef**
 
 ## Limitations
 
-This has only been tested on CentOS 6.5, but should work fine on any RHEL based system, versions 4+
+This has only been tested on CentOS 6 and RedHat 6/7, but should work fine on any supported RHEL-based system.
 
 ## Development
 
@@ -165,4 +167,3 @@ With the 0.3.0 release, the cron job times will likely change as an extra seed a
 ## Contributors
 
 Contributors can be found on github.
-

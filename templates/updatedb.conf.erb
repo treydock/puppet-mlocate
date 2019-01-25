@@ -1,10 +1,10 @@
 # This file is managed by puppet.
 #
-<% if @prune_bind_mounts -%>
-PRUNE_BIND_MOUNTS = "<%= @prune_bind_mounts %>"
-<% end -%>
-PRUNEFS = "<%= ((@prunefs << @extra_prunefs).flatten!).join(' ') %>"
+PRUNEFS = "<%= ((@prunefs << @extra_prunefs).flatten!.sort).join(' ') %>"
+PRUNEPATHS = "<%= ((@prunepaths << @extra_prunepaths).flatten!.sort).join(' ') %>"
 <% if @prunenames -%>
-PRUNENAMES = "<%= ((@prunenames << @extra_prunenames).flatten!).join(' ') %>"
+PRUNENAMES = "<%= ((@prunenames << @extra_prunenames).flatten!.sort).join(' ') %>"
 <% end -%>
-PRUNEPATHS = "<%= ((@prunepaths << @extra_prunepaths).flatten!).join(' ') %>"
+<% if @prune_bind_mounts -%>
+PRUNE_BIND_MOUNTS = "<%= @prune_bind_mounts.to_s %>"
+<% end -%>

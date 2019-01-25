@@ -5,56 +5,77 @@
 # === Parameters
 #
 # [*package_name*]
-#   The name of the package to install. Default: mlocate
+#   The name of the package to install.
+#   Default: 'mlocate'
 #
 # [*package_ensure*]
-#   Ensure the package is present, latest, or absent. Default: present
+#   Ensure the package is 'present', 'absent', or 'latest'.
+#   Default: 'present'
 #
 # [*update_command*]
-#   The name of the updatedb wrapper script. Default: /usr/local/bin/mlocate.cron
+#   The name of the updatedb wrapper script.
+#   Default: '/usr/local/bin/mlocate.cron'
 #
 # [*deploy_update_command*]
-#   If true the puppet module will deploy update_command script. Default: true
+#   If true the puppet module will deploy update_command script.
+#   Default: true
 #
 # [*update_on_install*]
-#   Run an initial update when the package is installed. Default: true
+#   Run an initial update when the package is installed.
+#   Default: true
 #
 # [*conf_file*]
-#   The configuration file for updatedb. Default: /etc/updatedb.conf
+#   The configuration file for updatedb.
+#   Default: '/etc/updatedb.conf'
 #
 # [*cron_ensure*]
-#   Ensure the cron jobs is present or absent. Default: present
+#   Ensure the cron jobs is present or absent.
+#   Default: 'present'
 #
 # [*cron_schedule*]
-#   The standard cron time schedule. Default: once a week based on fqdn_rand
+#   The standard cron time schedule.
+#   Default: once a week based on fqdn_rand
 #
 # [*cron_daily_path*]
 #   The path to cron.daily file installed by mlocate and that is removed.
+#   Default: '/etc/cron.daily/mlocate.cron' or '/etc/cron.daily/mlocate' (depending on OS version)
 #
 # [*prune_bind_mounts*]
-#   Prune out bind mounts or not. Default: yes
+#   Prune out bind mounts or not.
+#   Optional value
+#   Default: 'yes'
 #   Refer to the updatedb.conf man page for more detail.
 #
 # [*prunenames*]
-#   Prune out directories matching this pattern. Default: .git .hg .svn
+#   Prune out directories matching this pattern.
+#   Optional value
+#   Default: '.git .hg .svn'
 #   Refer to the updatedb.conf man page for more detail.
 #
 # [*extra_prunenames*]
-#   Prune out additional directories matching this pattern. Default: none
+#   Prune out additional directories matching this pattern.
+#   Optional value
+#   Default: undef
 #
 # [*prunefs*]
-#   Prune out these FS types. Default: refer to the params.pp
+#   Prune out these filesystem types.
+#   Default: refer to mlocate::prunefs in data/common.yaml
 #   Refer to the updatedb.conf man page for more detail.
 #
 # [*extra_prunefs*]
-#   Prune out additional directories matching this pattern. Default: none
+#   Prune out additional filesystem types matching this pattern.
+#   Optional value
+#   Default: undef
 #
 # [*prunepaths*]
-#   Prune out paths matching this pattern. Default: refer to params.pp
+#   Prune out paths matching this pattern.
+#   Default: refer to mlocate::prunepaths in data/common.yaml
 #   Refer to the updatedb.conf man page for more detail.
 #
 # [*extra_prunepaths*]
-#   Prune out additional directories matching this pattern. Default: none
+#   Prune out additional paths matching this pattern.
+#   Optional value
+#   Default: undef
 #
 # === Examples
 #
@@ -72,51 +93,26 @@
 #
 # === Copyright
 #
-# Copyright 2014 Adam Crews, unless otherwise noted.
+# Copyright 2019 Adam Crews, unless otherwise noted.
 #
-class mlocate (
-  $package_name          = $mlocate::params::package_name,
-  $package_ensure        = $mlocate::params::package_ensure,
-  $update_command        = $mlocate::params::update_command,
-  $deploy_update_command = $mlocate::params::deploy_update_command,
-  $update_on_install     = $mlocate::params::update_on_install,
-  $conf_file             = $mlocate::params::conf_file,
-
-  $cron_ensure           = $mlocate::params::cron_ensure,
-  $cron_schedule         = $mlocate::params::cron_schedule,
-  $cron_daily_path       = $mlocate::params::cron_daily_path,
-
-  $prune_bind_mounts     = $mlocate::params::prune_bind_mounts,
-  $prunefs               = $mlocate::params::prunefs,
-  $extra_prunefs         = [],
-  $prunenames            = $mlocate::params::prunenames,
-  $extra_prunenames      = [],
-  $prunepaths            = $mlocate::params::prunepaths,
-  $extra_prunepaths      = [],
-) inherits mlocate::params {
-
-  validate_string($package_name)
-  validate_re($package_ensure, ['^present', '^latest', '^absent'], "Error: \$package_ensure must be either 'present', 'latest', or 'absent'")
-  validate_absolute_path($update_command)
-  validate_bool($deploy_update_command)
-  validate_bool($update_on_install)
-  validate_absolute_path($conf_file)
-
-  validate_re($cron_ensure, ['^present', '^absent'], "Error: \$cron_ensure must be either 'present' or 'absent'")
-  validate_string($cron_schedule)
-  validate_absolute_path($cron_daily_path)
-
-  if $prune_bind_mounts {
-    validate_re($prune_bind_mounts, [ '^yes', '^no' ], "Error: \$prune_bind_mounts must be either 'yes', or 'no'")
-  }
-  validate_array($prunefs)
-  validate_array($extra_prunefs)
-  if $prunenames {
-    validate_array($prunenames)
-  }
-  validate_array($extra_prunenames)
-  validate_array($prunepaths)
-  validate_array($extra_prunepaths)
+class mlocate(
+  String $package_name                                = lookup('mlocate::package_name'),
+  Enum['present', 'absent', 'latest'] $package_ensure = lookup('mlocate::package_ensure'),
+  Stdlib::Absolutepath $update_command                = lookup('mlocate::update_command'),
+  Boolean $deploy_update_command                      = lookup('mlocate::deploy_update_command'),
+  Boolean $update_on_install                          = lookup('mlocate::update_on_install'),
+  Stdlib::Absolutepath $conf_file                     = lookup('mlocate::conf_file'),
+  Enum['present', 'absent'] $cron_ensure              = lookup('mlocate::cron_ensure'),
+  String $cron_schedule                               = join([fqdn_rand(60, 'min'), fqdn_rand(24, 'hour'), '*', '*', fqdn_rand(7, 'day')], ' '), # lint:ignore:140chars
+  Stdlib::Absolutepath $cron_daily_path               = lookup('mlocate::cron_daily_path'),
+  Optional[Enum['yes']] $prune_bind_mounts            = lookup('mlocate::prune_bind_mounts'),
+  Optional[Array] $prunenames                         = lookup('mlocate::prunenames'),
+  Array $extra_prunenames                             = [],
+  Array $prunefs                                      = lookup('mlocate::prunefs'),
+  Array $extra_prunefs                                = [],
+  Array $prunepaths                                   = lookup('mlocate::prunepaths'),
+  Array $extra_prunepaths                             = [],
+) {
 
   anchor { 'mlocate::begin': }
   -> class { '::mlocate::install': }
