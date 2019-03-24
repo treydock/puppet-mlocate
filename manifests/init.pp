@@ -12,6 +12,9 @@
 #   Ensure the package is 'present', 'absent', or 'latest'.
 #   Default: 'present'
 #
+# [*update_command_path*]
+#   The path to the updatedb wrapper script.  Default: $update_command
+#
 # [*update_command*]
 #   The name of the updatedb wrapper script.
 #   Default: '/usr/local/bin/mlocate.cron'
@@ -98,6 +101,7 @@
 class mlocate(
   String $package_name                                = lookup('mlocate::package_name'),
   Enum['present', 'absent', 'latest'] $package_ensure = lookup('mlocate::package_ensure'),
+  Optional[Stdlib::Absolutepath] $update_command_path = undef,
   Stdlib::Absolutepath $update_command                = lookup('mlocate::update_command'),
   Boolean $deploy_update_command                      = lookup('mlocate::deploy_update_command'),
   Boolean $update_on_install                          = lookup('mlocate::update_on_install'),
@@ -113,6 +117,8 @@ class mlocate(
   Array $prunepaths                                   = lookup('mlocate::prunepaths'),
   Array $extra_prunepaths                             = [],
 ) {
+
+  $_update_command_path = pick($update_command_path, $update_command)
 
   anchor { 'mlocate::begin': }
   -> class { '::mlocate::install': }

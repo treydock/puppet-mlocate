@@ -2,6 +2,7 @@ class mlocate::install (
   Enum['present', 'absent', 'latest'] $package_ensure = $::mlocate::package_ensure,
   String $package_name                                = $::mlocate::package_name,
   Stdlib::Absolutepath $conf_file                     = $::mlocate::conf_file,
+  Stdlib::Absolutepath $update_command_path           = $::mlocate::_update_command_path,
   Stdlib::Absolutepath $update_command                = $::mlocate::update_command,
   Boolean $deploy_update_command                      = $::mlocate::deploy_update_command,
   Boolean $update_on_install                          = $::mlocate::update_on_install,
@@ -31,7 +32,7 @@ class mlocate::install (
     true: {
       file { 'update_command':
         ensure  => file,
-        path    => $update_command,
+        path    => $update_command_path,
         owner   => 'root',
         group   => 'root',
         mode    => '0555',
@@ -51,7 +52,7 @@ class mlocate::install (
   }
 
   if $update_on_install {
-    exec { $update_command:
+    exec { $update_command_path:
       refreshonly => true,
       creates     => '/var/lib/mlocate/mlocate.db',
       subscribe   => Package['mlocate'],
